@@ -3,6 +3,9 @@ import pyttsx3
 import datetime
 import wikipedia
 import webbrowser
+import wolframalpha
+import os
+
 
 print ('Loading your  AI personal assistant - Fred')
 engine = pyttsx3.init('sapi5')
@@ -36,3 +39,18 @@ def takeCommand():
         return statement
 speak("Loading your AI personal assistant Fred")
 wishMe()
+if __name__=='__main__':
+
+
+    while True:
+        speak("Tell me how can I help you now?")
+        statement = takeCommand().lower()
+        if statement==0:
+            continue
+
+        if "good bye" in statement or "ok bye" in statement or "stop" in statement:
+            speak('your personal assistant Fred is shutting down,Good bye')
+            print('your personal assistant Fred is shutting down,Good bye')
+            break
+
+
