@@ -1,3 +1,4 @@
+import requests
 import speech_recognition as sr
 import pyttsx3
 import datetime
@@ -52,5 +53,37 @@ if __name__=='__main__':
             speak('your personal assistant Fred is shutting down,Good bye')
             print('your personal assistant Fred is shutting down,Good bye')
             break
+
+
+
+        if "weather" in statement:
+            api_key="8ef61edcf1c576d65d836254e11ea420"
+            base_url="https://api.openweathermap.org/data/2.5/weather?"
+            speak("whats the city name")
+            city_name=takeCommand()
+            complete_url=base_url+"appid="+api_key+"&q="+city_name
+            response = requests.get(complete_url)
+            x=response.json()
+            if x["cod"]!="404":
+                y=x["main"]
+                current_temperature = y["temp"]
+                current_humidiy = y["humidity"]
+                z = x["weather"]
+                weather_description = z[0]["description"]
+                speak(" Temperature in degrees unit is " +
+                      str(current_temperature) +
+                      "\n humidity in percentage is " +
+                      str(current_humidiy) +
+                      "\n description  " +
+                      str(weather_description))
+                print(" Temperature in degrees unit = " +
+                      str(current_temperature) +
+                      "\n humidity (in percentage) = " +
+                      str(current_humidiy) +
+                      "\n description = " +
+                      str(weather_description))
+
+            else:
+                speak(" City Not Found ")
 
 
