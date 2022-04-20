@@ -4,6 +4,7 @@ import pyttsx3
 import datetime
 import wikipedia
 import webbrowser
+
 import wolframalpha
 import os
 
@@ -71,13 +72,15 @@ if __name__=='__main__':
                 z = x["weather"]
                 weather_description = z[0]["description"]
                 speak(" Temperature in degrees unit is " +
-                      str(current_temperature) +
+                      "{:n}".format(int(current_temperature - 273.15))
+                      +
                       "\n humidity in percentage is " +
                       str(current_humidiy) +
                       "\n description  " +
                       str(weather_description))
                 print(" Temperature in degrees unit = " +
-                      str(current_temperature) +
+                      "{:n}".format(int(current_temperature - 273.15))
+                      +
                       "\n humidity (in percentage) = " +
                       str(current_humidiy) +
                       "\n description = " +
