@@ -3,10 +3,8 @@ import speech_recognition as sr
 import pyttsx3
 import datetime
 from functions import find_my_ip, play_on_youtube, search_on_google,get_random_joke
-import wikipedia
-import webbrowser
 import wolframalpha
-import os
+
 
 
 
