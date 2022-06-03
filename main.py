@@ -2,11 +2,12 @@ import requests
 import speech_recognition as sr
 import pyttsx3
 import datetime
+from functions import find_my_ip, play_on_youtube, search_on_google,get_random_joke
 import wikipedia
 import webbrowser
-
 import wolframalpha
 import os
+
 
 
 print ('Loading your  AI personal assistant - Fred')
@@ -88,5 +89,38 @@ if __name__=='__main__':
 
             else:
                 speak(" City Not Found ")
+        elif 'ip address' in statement:
+            ip_address = find_my_ip()
+            speak(f'Your IP Address is {ip_address}.\n For your convenience, I am printing it on the screen.')
+            print(f'Your IP Address is {ip_address}')
+        elif 'youtube' in statement:
+            speak('What do you want to play on Youtube?')
+            video = takeCommand().lower()
+            play_on_youtube(video)
+        elif 'google' in statement:
+            speak('What do you want to search on Google?')
+            statement = takeCommand().lower()
+            search_on_google(statement)
+        elif 'ask' in statement:
+            speak('I can answer to computational and geographical questions and what question do you want to ask now')
+            question = takeCommand()
+            app_id = "R2K75H-7ELALHR35X"
+            client = wolframalpha.Client('R2K75H-7ELALHR35X')
+            res = client.query(question)
+            answer = next(res.results).text
+            speak(answer)
+            print(answer)
+        elif 'the time' in statement:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"the time is {strTime}")
+            speak("For your convenience,I am printing it on the screen")
+            print(strTime)
+        elif 'joke' in statement:
+            speak(f"Hope you like this one ")
+            joke = get_random_joke()
+            speak(joke)
+            speak("For your convenience, I am printing it on the screen.")
+            print(joke)
+
 
 
